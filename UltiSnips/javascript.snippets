@@ -1,80 +1,171 @@
-snippet cla "#comment"
-/**
- * ${1:Description of class}
- *
- * @class ${2:ClassName}
- * @constructor
- * ${3:@extends ${4:BaseClass}}
- * ${5:@param {${6:paramType}} ${7:paramName} ${8:Description of param }}
- */
-function $2 ($7) {
-    ${0: // TODO ...}
+priority -50
+
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+snippet get "Get Elements"
+getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')
+endsnippet
+
+snippet '':f "object method string"
+'${1:${2:#thing}:${3:click}}': function(element) {
+	${VISUAL}$0
+}${10:,}
+endsnippet
+
+snippet :f "Object Method"
+${1:method_name}: function(${3:attribute}) {
+	${VISUAL}$0
+}${10:,}
+endsnippet
+
+snippet :, "Object Value JS"
+${1:value_name}: ${0:value},
+endsnippet
+
+snippet : "Object key key: 'value'"
+${1:key}: ${2:"${3:value}"}${4:, }
+endsnippet
+
+snippet proto "Prototype (proto)"
+${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
+	${VISUAL}$0
+};
+
+endsnippet
+
+snippet for "for (...) {...} (counting up)" b
+for (var ${1:i} = 0, ${2:len} = ${3:Things.length}; $1 < $2; $1++) {
+	${VISUAL}$0
 }
-${9:util.inherits($2, $4);}
 endsnippet
 
-snippet exp
-module.exports
-endsnippet
-
-snippet fun "#comment"
-/**
- * ${1:Description of function}
- * @method ${2:functionName}
- * @param {${3:paramType}} ${4:paramName} ${5:Description of param}
- * @return {${6:returnType}} ${7:Description of the return value}
- */
-function $2 ($4) {
-    ${0:// TODO ...}
+snippet ford "for (...) {...} (counting down, faster)" b
+for (var ${2:i} = ${1:Things.length} - 1; $2 >= 0; $2--) {
+	${VISUAL}$0
 }
 endsnippet
 
-snippet mod "#module + comment"
-/**
- * ${1:Description of module} 
- *
- * @module ${2:module-name}
- */
-$0
+snippet fun "function (fun)"
+function ${1:function_name}(${2:argument}) {
+	${VISUAL}$0
+}
 endsnippet
 
-snippet prop "#property with comments"
-/**
- * ${1:Description of the property }
- *
- * @property ${2:propertyName}
- * @type ${3:propertyType}
- * @default ${4:defaultValue}
- */
-this.$2 = $4;
-endsnippet
-
-snippet proto "#prototype with comments"
-/**
- * ${1:Description of method}
- * @method ${2:methodName}
- * @param {${4:paramType}} ${5:paramName} ${6:Description of param}
- * @return {${7:returnType}} ${8:Description of the return value}
- */
-${3:ClassName}.prototype.$2 = function ($5) {
-    "use strict";
-    ${9:// TODO ...}
+snippet vf "Function assigned to var"
+${1:var }${2:function_name} = function $2(${3}) {
+	${VISUAL}$0
 };
 endsnippet
 
-snippet log "#console.log"
-console.log(${1});
+snippet af "Anonymous Function" i
+function($1) {
+	${VISUAL}$0
+}
 endsnippet
 
-snippet / "#comments"
-/* ${1} */
-${0}
+snippet iife "Immediately-Invoked Function Expression (iife)"
+(function(${1:window}) {
+	${VISUAL}$0
+}(${2:$1}));
 endsnippet
 
-snippet req "#require"
-require('${1:module}')${0}
+snippet timeout "setTimeout function"
+setTimeout(function() {
+	${VISUAL}$0
+}${2:.bind(${3:this})}, ${1:10});
 endsnippet
 
-snippet while "#while"
-while (${1:/*condition*/}) {$0}
+snippet fi "for prop in obj using hasOwnProperty" b
+for (${1:prop} in ${2:obj}){
+	if ($2.hasOwnProperty($1)) {
+		${VISUAL}$0
+	}
+}
 endsnippet
+
+# Snippets for Console Debug Output
+
+snippet ca "console.assert" b
+console.assert(${1:assertion}, ${2:"${3:message}"});
+endsnippet
+
+snippet cclear "console.clear" b
+console.clear();
+endsnippet
+
+snippet cdir "console.dir" b
+console.dir(${1:object});
+endsnippet
+
+snippet cdirx "console.dirxml" b
+console.dirxml(${1:object});
+endsnippet
+
+snippet ce "console.error" b
+console.error(${1:"${2:value}"});
+endsnippet
+
+snippet cgroup "console.group" b
+console.group("${1:label}");
+${VISUAL}$0
+console.groupEnd();
+endsnippet
+
+snippet cgroupc "console.groupCollapsed" b
+console.groupCollapsed("${1:label}");
+${VISUAL}$0
+console.groupEnd();
+endsnippet
+
+snippet ci "console.info" b
+console.info(${1:"${2:value}"});
+endsnippet
+
+snippet cl "console.log" b
+console.log(${1:"${2:value}"});
+endsnippet
+
+snippet cd "console.debug" b
+console.debug(${1:"${2:value}"});
+endsnippet
+
+snippet cprof "console.profile" b
+console.profile("${1:label}");
+${VISUAL}$0
+console.profileEnd();
+endsnippet
+
+snippet ctable "console.table" b
+console.table(${1:"${2:value}"});
+endsnippet
+
+snippet ctime "console.time" b
+console.time("${1:label}");
+${VISUAL}$0
+console.timeEnd("$1");
+endsnippet
+
+snippet ctimestamp "console.timeStamp" b
+console.timeStamp("${1:label}");
+endsnippet
+
+snippet ctrace "console.trace" b
+console.trace();
+endsnippet
+
+snippet cw "console.warn" b
+console.warn(${1:"${2:value}"});
+endsnippet
+
+# AMD (Asynchronous Module Definition) snippets
+
+snippet def "define an AMD module"
+define(${1:optional_name, }[${2:'jquery'}], ${3:callback});
+endsnippet
+
+snippet req "require an AMD module"
+require([${1:'dependencies'}], ${2:callback});
+endsnippet
+
+# vim:ft=snippets:
