@@ -19,16 +19,16 @@ command! DeleteBlank call wr#Delete_blank()
 command! -nargs=+ Range call append(line('.'), range(<f-args>))
 
 " char pair"{{{
-inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
-inoremap ( ()<Esc>i
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap < <lt>><Esc>i
-inoremap > <c-r>=ClosePair('>')<CR>
-inoremap [ []<Esc>i
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap { {}<Esc>i
-inoremap } <c-r>=ClosePair('}')<CR>
+"inoremap " <c-r>=QuoteDelim('"')<CR>
+"inoremap ' <c-r>=QuoteDelim("'")<CR>
+"inoremap ( ()<Esc>i
+"inoremap ) <c-r>=ClosePair(')')<CR>
+"inoremap < <lt>><Esc>i
+"inoremap > <c-r>=ClosePair('>')<CR>
+"inoremap [ []<Esc>i
+"inoremap ] <c-r>=ClosePair(']')<CR>
+"inoremap { {}<Esc>i
+"inoremap } <c-r>=ClosePair('}')<CR>
 
 function QuoteDelim(char)
 	let line = getline('.')
@@ -54,23 +54,3 @@ function! ClosePair(char)
 endf"}}}
 
 " vim: fdm=marker ts=4 sw=4
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
