@@ -89,4 +89,12 @@ snippet "tb(\d+x\d+)" "Customizable table" br
 `!p snip.rv = match.group(1)`
 endsnippet
 
+snippet head "header for pandoc"
+---
+title: ${1:title}
+toc-title: 目录
+...
+$0
+endsnippet
+
 # vim:ft=snippets:

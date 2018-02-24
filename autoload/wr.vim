@@ -1,3 +1,18 @@
+exec g:wr_uspy "from wr import TextGenerator"
+exec g:wr_uspy "tg = TextGenerator()"
+
+function! wr#Format(fl, ll)
+    exec g:wr_uspy "tg.format(int(" . a:fl . ") - 1, int(" . a:ll . "))"
+endfunction
+
+function! wr#SetTemplate(fl, ll)
+    exec g:wr_uspy "tg.set_template(int(" . a:fl . ") - 1, int(" . a:ll . "))"
+endfunction
+
+function! wr#UnSetTemplate()
+    exec g:wr_uspy "tg.unset_template()"
+endfunction
+
 function! wr#Sum(col, fl, ll)
     let s:sum = 0
     for s:i in getline(a:fl, a:ll)
@@ -6,29 +21,7 @@ function! wr#Sum(col, fl, ll)
     call append(a:ll, printf("= %.2f", s:sum))
 endfunction
 
-function! wr#Format(fl, ll)
-    let s:data = getline(a:fl, a:ll)
-    if exists("s:tpl")
-        let s:tmp_tpl = join(s:tpl, "\n")
-    else
-        let s:tmp_tpl = getline(a:fl - 1)
-    endif
-py<<EOF
-b = vim.current.buffer
-for d in vim.eval('s:data'):
-    b.append((vim.eval('s:tmp_tpl').format(*tuple(d.split()))).splitlines())
-EOF
-endfunction
-
-function! wr#UnSetTemplate()
-    unlet s:tpl
-endfunction
-
-function! wr#SetTemplate(fl, ll)
-    let s:tpl = getline(a:fl, a:ll)
-endfunction
-
-function wr#Delete_blank()
+function! wr#Delete_blank()
     %s/[ \t]*$//ge 
     "exe "normal \<c-o>"
     :w

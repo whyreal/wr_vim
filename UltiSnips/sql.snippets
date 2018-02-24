@@ -11,11 +11,11 @@ grant unlimited tablespace to $1 with admin option;
 endsnippet
 
 snippet impdp
-impdp ${1:${2:USERNAME}/${3:PASSWORD}@${4:HOST}/${5:SID}} directory=${6:DATA_PUMP_DIR} dumpfile=${7:exampleDB.dmp} logfile=impdp.log
+impdp ${1:${2:USERNAME}/${3:PASSWORD}@${4:HOST}/${5:SID}} directory=${6:DATA_PUMP_DIR} dumpfile=${7:exampleDB.dmp} logfile=impdp.log ${8:remap_tablespace=PLATFORM:MNETUIAS remap_schema=uias:mnetuias}
 endsnippet
 
 snippet expdp
-expdp ${1:${2:USERNAME}/${3:PASSWORD}@${4:HOST}/${5:SID}} directory=${6:DATA_PUMP_DIR} dumpfile=${7:exampleDB.dmp} logfile=expdp.log
+expdp ${1:${2:USERNAME}/${3:PASSWORD}@${4:HOST}/${5:SID}} directory=${6:DATA_PUMP_DIR} dumpfile=${7:exampleDB.dmp} logfile=expdp.log remap_tablespace=PLATFORM:MNETUIAS remap_schema=uias:mnetuias
 endsnippet
 
 snippet imp
@@ -24,19 +24,4 @@ endsnippet
 
 snippet exp 
 exp ${1:${2:USERNAME}/${3:PASSWORD}@${4:HOST}/${5:SID}} file=${6:dmpfile_path}
-endsnippet
-
-snippet a
-<a href="${1:http://www.${2:example.com}}"</a>
-    $0
-</a>
-    ${VISUAL:default text}
-endsnippet
-snippet title "Title transformation"
-${1:a text}
-${1/\w+\s*/\u$0/}
-endsnippet
-
-snippet t
-<tag>${VISUAL:inside text/should/is/g}</tag>
 endsnippet
