@@ -1,5 +1,5 @@
-exec g:wr_uspy "from wr import TextGenerator"
-exec g:wr_uspy "tg = TextGenerator()"
+exec g:wr_uspy "import wr"
+exec g:wr_uspy "tg = wr.TextGenerator()"
 
 function! wr#Format(fl, ll)
     exec g:wr_uspy "tg.format(int(" . a:fl . ") - 1, int(" . a:ll . "))"
@@ -14,11 +14,11 @@ function! wr#UnSetTemplate()
 endfunction
 
 function! wr#Sum(col, fl, ll)
-    let s:sum = 0
-    for s:i in getline(a:fl, a:ll)
-        let s:sum = s:sum + str2float(split(s:i)[a:col - 1])
-    endfor
-    call append(a:ll, printf("= %.2f", s:sum))
+    exec g:wr_uspy "wr.sum(int(" . a:col . "), int(" . a:fl . ") - 1, int(" . a:ll . "))"
+endfunction
+
+function! wr#test()
+    exec g:wr_uspy "wr.test()"
 endfunction
 
 function! wr#Delete_blank()
