@@ -59,4 +59,10 @@ function! wr#FindFile(name)
     execute ":e ".l:line
 endfunction
 
+function! wr#DetectVoomType()
+if &fdm == 'marker'
+	let g:voom_ft_modes[&ft] = 'fmr'
+endif
+endfunction
+
 " vim: sw=4
