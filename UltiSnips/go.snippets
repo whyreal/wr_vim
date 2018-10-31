@@ -113,3 +113,11 @@ if err != nil {
 	log.${1:Fatal}(err)
 }
 endsnippet
+
+snippet print "fmt.printLn()" b
+fmt.Println(${1:str})
+endsnippet
+
+snippet cpu "GOMAXPROCS" b
+runtime.GOMAXPROCS(runtime.NumCPU())
+endsnippet
