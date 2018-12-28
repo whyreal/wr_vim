@@ -1,0 +1,25 @@
+global !p
+
+def get_url_from_clipboard(snip):
+    unnamed = vim.eval("@*")
+    if snip.c == "" and unnamed.startswith("http"):
+        return unnamed
+    return snip.c
+
+endglobal
+
+snippet link "Link to something"
+[${1:name}](`!p snip.rv = get_url_from_clipboard(snip)`)$0
+endsnippet
+
+snippet img "Image"
+![${1:pic alt}](`!p snip.rv = get_url_from_clipboard(snip)
+`${2/.+/ "/}${2:opt title}${2/.+/"/})$0
+endsnippet
+
+snippet code "code block" b
+
+\`\`\`${1:language}
+$0
+\`\`\`
+endsnippet

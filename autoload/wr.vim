@@ -1,24 +1,6 @@
-exec g:wr_uspy "import wr"
-exec g:wr_uspy "tg = wr.TextGenerator()"
-
-function! wr#Format(fl, ll)
-    exec g:wr_uspy "tg.format(int(" . a:fl . ") - 1, int(" . a:ll . "))"
-endfunction
-
-function! wr#SetTemplate(fl, ll)
-    exec g:wr_uspy "tg.set_template(int(" . a:fl . ") - 1, int(" . a:ll . "))"
-endfunction
-
-function! wr#UnSetTemplate()
-    exec g:wr_uspy "tg.unset_template()"
-endfunction
 
 function! wr#Sum(col, fl, ll)
-    exec g:wr_uspy "wr.sum(int(" . a:col . "), int(" . a:fl . ") - 1, int(" . a:ll . "))"
-endfunction
-
-function! wr#test()
-    exec g:wr_uspy "wr.test()"
+    exec  "pythonx wr.sum(int(" . a:col . "), int(" . a:fl . ") - 1, int(" . a:ll . "))"
 endfunction
 
 function! wr#Delete_blank()
@@ -63,6 +45,19 @@ function! wr#DetectVoomType()
 if &fdm == 'marker'
 	let g:voom_ft_modes[&ft] = 'fmr'
 endif
+endfunction
+
+function! wr#GoInstallDeps()
+    !go install -i
+endfun
+
+" https://ddrscott.github.io/blog/2016/vim-toggle-movement/
+function! wr#ToggleHomeZero()
+  let pos = getpos('.')
+  execute "normal! ^"
+  if pos == getpos('.')
+    execute "normal! 0"
+  endif
 endfunction
 
 " vim: sw=4
