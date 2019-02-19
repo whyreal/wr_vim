@@ -23,3 +23,19 @@ snippet code "code block" b
 $0
 \`\`\`
 endsnippet
+
+snippet pandoc_head "pandoc head"
+---
+title: ${1}
+toc-title: 目录
+toc: 1
+keywords:
+- ${2:key word}
+...
+endsnippet
+
+snippet blank_line "blank line" b
+<!-- -->
+$0
+endsnippet
+	

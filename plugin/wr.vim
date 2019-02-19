@@ -22,7 +22,7 @@ command! VimrcReload so ~/.vim/vimrc
 command! Dos2unix e ++ff=unix | %s///g
 
 " note
-command! Note tab new | lcd ~/Documents/Note/ | NERDTree | set titlestring=Note
+command! Note lcd ~/Documents/Note/ | set titlestring=Note | NERDTree
 
 " json
 command! JSONFormat %!python -m json.tool
@@ -31,7 +31,7 @@ command! JSONFormat %!python -m json.tool
 nnoremap <silent> ? :!open dict://<cword><CR><CR>
 
 " iterm2
-command! Term !open -a /Applications/Utilities/Terminal.app %:h
+"command! Term !open -a /Applications/Utilities/Terminal.app %:h
 
 "}}}
 " vim: fdm=marker ts=4 sw=4
