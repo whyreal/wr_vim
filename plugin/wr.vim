@@ -22,7 +22,7 @@ command! VimrcReload so ~/.vim/vimrc
 command! Dos2unix e ++ff=unix | %s///g
 
 " note
-command! Note lcd ~/Documents/Note/ | set titlestring=Note | NERDTree
+command! Note lcd ~/Documents/vim_workspace/doc/ | set titlestring=Note | NERDTree
 
 " json
 command! JSONFormat %!python -m json.tool
