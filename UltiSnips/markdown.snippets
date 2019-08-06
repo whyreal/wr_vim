@@ -27,10 +27,14 @@ endsnippet
 snippet pandoc_head "pandoc head"
 ---
 title: ${1}
+author: ${2}
+date:${3}
 toc-title: 目录
 toc: 1
 keywords:
-- ${2:key word}
+- ${4:key word}
+description: |
+	${5}
 ...
 endsnippet
 
